@@ -43,13 +43,13 @@ def uploadPhoto(downloadURL):
     r = yield from aiohttp.request('get',downloadURL)
     raw = yield from r.read()
     print(fileName)
-    newFile = open('/home/mzeman/dekrizifierImages/'+fileName,'wb')
+    newFile = open('/home/nm90/dekrizifierImages/'+fileName,'wb')
     newFile.write(raw)
 
     byteSize = os.path.getsize(newFile.name)
     print(byteSize)
     print("micro")
-    cookies  =  _load_cookies("/home/mzeman/.local/share/hangupsbot/cookies.json")
+    cookies  =  _load_cookies("/home/nm90/.local/share/hangupsbot/cookies.json")
     cookies = dict(cookies)
     headers = {'content-type' : "application/x-www-form-urlencoded;charset=utf-8","X-GUploader-Client-Info" : "mechanism=scotty xhr resumable; clientVersion=82480166"}
     data={"protocolVersion":"0.8","createSessionRequest":{"fields":[{"external":{"name":"file","filename":fileName,"put":{},"size":str(byteSize)}},{"inlined":{"name":"use_upload_size_pref","content":"true","contentType":"text/plain"}},{"inlined":{"name":"title","content":fileName,"contentType":"text/plain"}},{"inlined":{"name":"addtime","content":epoch_time,"contentType":"text/plain"}},{"inlined":{"name":"batchid","content":epoch_time,"contentType":"text/plain"}},{"inlined":{"name":"album_id","content":"6128887752999767425","contentType":"text/plain"}},{"inlined":{"name":"album_abs_position","content":"0","contentType":"text/plain"}},{"inlined":{"name":"client","content":"hangouts","contentType":"text/plain"}}]}}
