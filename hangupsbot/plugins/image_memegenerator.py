@@ -44,7 +44,7 @@ def meme(bot, event, *args):
             for param in parameters:
                 urlparameters.append(urllib.parse.quote_plus(param))
             parameters = urlparameters
-        import pdb; pdb.set_trace()
+        
         links = yield from _retrieve("http://memegenerator.net/memes/search?q=" + "+".join(parameters), ".item_medium_small > a", "href")
         links = yield from _retrieve("http://memegenerator.net" + random.choice(links), ".item_medium_small > a", "href")
 
